@@ -3,6 +3,10 @@
   font-family: "Share Tech", sans-serif;
 }
 
+body {
+  margin: 0;
+}
+
 .card {
   display: flex;
   flex-direction: row;
@@ -48,3 +52,53 @@
   transform: translateY(-3px) scale(1.025);
 }
 
+.cover {
+  height: 280px;
+  width: 100%;
+  opacity: 0.8;
+  background-image: url('/cover2.png');
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-right: 50px;
+  transform: translateY(-3px);
+
+  z-index: 1;
+}
+
+.icon {
+  width: 45px;
+  height: 45px;
+  background-image: url('/icon.png');
+}
+
+.nav-bar {
+  height: 80px;
+  width: 100%;
+  background-color: #212121;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.mini-bar {
+  height: 80px;
+  width: 100%;
+  background-color: #FFFFFF;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  transform: translateY(-5px);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+}
