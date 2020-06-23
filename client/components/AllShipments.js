@@ -16,6 +16,8 @@ export default class AllShipments extends Component {
       page: 1,
       totalPages: 1,
     };
+
+    this.goToShipment = this.goToShipment.bind(this)
   }
 
   async componentDidMount() {
@@ -30,6 +32,10 @@ export default class AllShipments extends Component {
     });
   }
 
+  goToShipment(id) {
+    this.props.history.push(`/${id}`)
+  }
+
   render() {
     return (
       <div>
@@ -38,7 +44,7 @@ export default class AllShipments extends Component {
           {this.state.shipments.map((shipment) => {
             return (
               <Grid item md={4} sm={12}>
-                <ShipmentCard item data={shipment} />
+                <ShipmentCard item data={shipment} goToShipment={this.goToShipment}/>
               </Grid>
             );
           })}

@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ShipmentCard(props) {
     return (
-        <div className="card">
+        <div onClick={() => props.goToShipment(props.data.id)} className="card">
             <div className="basic-info">
                 <h3>ID: {props.data.id}</h3>
                 <h3>Name: {props.data.name}</h3>

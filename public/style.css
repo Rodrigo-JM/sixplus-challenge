@@ -2,12 +2,6 @@
   box-sizing: border-box;
   font-family: "Share Tech", sans-serif;
 }
-/* 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
-  gap: 1rem;
-} */
 
 .card {
   display: flex;
@@ -53,3 +47,4 @@
     rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
   transform: translateY(-3px) scale(1.025);
 }
+
