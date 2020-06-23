@@ -7,9 +7,6 @@ export default class SingleShipment extends Component {
   constructor() {
     super();
 
-    this.state = {
-      shipment: {},
-    };
   }
 
   async componentDidMount() {

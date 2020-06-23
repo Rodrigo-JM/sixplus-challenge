@@ -3,10 +3,6 @@
   font-family: "Share Tech", sans-serif;
 }
 
-body {
-  margin: 0;
-}
-
 .card {
   display: flex;
   flex-direction: row;
@@ -101,4 +97,11 @@ body {
 .page {
   display: flex;
   flex-direction: column;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
 }
