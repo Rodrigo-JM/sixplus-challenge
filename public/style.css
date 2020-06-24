@@ -165,3 +165,7 @@
   width: 100%;
   height: 120px;
 }
+
+.not-found-message {
+  text-align: center;
+}

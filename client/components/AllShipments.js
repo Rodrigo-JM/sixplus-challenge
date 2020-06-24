@@ -56,6 +56,7 @@ class AllShipments extends Component {
         >
           <div>
             <Bouncer>
+              {this.props.shipments.length ? 
               <Grid container spacing={2}>
                 {this.props.shipments.map((shipment) => {
                   return (
@@ -68,7 +69,10 @@ class AllShipments extends Component {
                     </Grid>
                   );
                 })}
-              </Grid>
+              </Grid> : (
+                <h3 className="not-found-message">Sorry, no shipments were found</h3>
+              )
+              }
             </Bouncer>
           </div>
         </CSSTransition>
