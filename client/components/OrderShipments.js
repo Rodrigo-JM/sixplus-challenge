@@ -35,7 +35,8 @@ export const OrderShipments = (props) => {
 
   const [orderDirection, changeorderDirection] = useState("asc");
 
-  const submitSearch = (orderField, orderDirection) => {
+
+  const submitOrdering = (orderField, orderDirection) => {
     props.addToSharedQuery({
       ...props.sharedQuery,
       order: { [`_sort`]: orderField, [`_order`]: orderDirection },
@@ -46,7 +47,7 @@ export const OrderShipments = (props) => {
     });
   };
 
-  const cancelSearch = () => {
+  const cancelOrdering = () => {
     props.addToSharedQuery({
       ...props.sharedQuery,
       order: {},
@@ -91,17 +92,17 @@ export const OrderShipments = (props) => {
           <ArrowDownwardIcon fontSize="default" />
         </IconButton>
       )}
-      
+
       <Button
         className={classes.button}
         variant="contained"
-        onClick={() => submitSearch(orderField, orderDirection)}
+        onClick={() => submitOrdering(orderField, orderDirection)}
       >
         Order By
       </Button>
 
       {ordered && (
-        <IconButton onClick={() => cancelSearch()}>
+        <IconButton onClick={() => cancelOrdering()}>
           <CancelIcon fontSize="default" />
         </IconButton>
       )}
