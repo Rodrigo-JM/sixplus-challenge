@@ -7,11 +7,12 @@ import {
   MenuItem,
   FormControl,
   Button,
-  IconButton
+  IconButton,
 } from "@material-ui/core";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { makeStyles } from "@material-ui/core/styles";
+import CancelIcon from "@material-ui/icons/Cancel";
 
 import { getShipments } from "../redux/allShipments";
 
@@ -23,12 +24,14 @@ const useStyles = makeStyles((theme) => ({
     width: "25ch",
   },
   button: {
-    width: "10ch"
-  }
+    width: "10ch",
+  },
 }));
 
 export const OrderShipments = (props) => {
   const [orderField, changeorderField] = useState("");
+
+  let ordered = !!Object.keys(props.sharedQuery.order).length;
 
   const [orderDirection, changeorderDirection] = useState("asc");
 
@@ -40,6 +43,17 @@ export const OrderShipments = (props) => {
     props.getShipments(1, {
       ...props.sharedQuery,
       order: { [`_sort`]: orderField, [`_order`]: orderDirection },
+    });
+  };
+
+  const cancelSearch = () => {
+    props.addToSharedQuery({
+      ...props.sharedQuery,
+      order: {},
+    });
+    props.getShipments(1, {
+      ...props.sharedQuery,
+      order: {},
     });
   };
 
@@ -76,7 +90,18 @@ export const OrderShipments = (props) => {
           <ArrowDownwardIcon fontSize="default" />
         </IconButton>
       )}
-      <Button className={classes.button} variant="contained" onClick={() => submitSearch(orderField, orderDirection)}>Order By</Button>
+      <Button
+        className={classes.button}
+        variant="contained"
+        onClick={() => submitSearch(orderField, orderDirection)}
+      >
+        Order By
+      </Button>
+      {ordered && (
+        <IconButton onClick={() => cancelSearch()}>
+          <CancelIcon fontSize="default" />
+        </IconButton>
+      )}
     </form>
   );
 };

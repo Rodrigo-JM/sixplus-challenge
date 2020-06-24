@@ -11,6 +11,7 @@ import {
 import SearchIcon from "@material-ui/icons/Search";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
+import CancelIcon from "@material-ui/icons/Cancel";
 
 import { getShipments } from '../redux/allShipments'
 
@@ -26,12 +27,25 @@ const useStyles = makeStyles((theme) => ({
 export const SearchShipments = (props) => {
   const [searchField, changeSearchField] = useState("");
 
+  let serched = !!Object.keys(props.sharedQuery.search).length;
+
   const [searchVal, changeSearchVal] = useState("");
 
   const submitSearch = (searchField, searchVal) => {
     props.addToSharedQuery({...props.sharedQuery, search: {[`${searchField}_like`]: searchVal}})  
     props.getShipments(1, {...props.sharedQuery, search: {[`${searchField}_like`]: searchVal}})
   }
+
+  const cancelSearch = () => {
+    props.addToSharedQuery({
+      ...props.sharedQuery,
+      search: {},
+    });
+    props.getShipments(1, {
+      ...props.sharedQuery,
+      search: {},
+    });
+  };
 
   const classes = useStyles();
 
@@ -73,6 +87,11 @@ export const SearchShipments = (props) => {
       <IconButton onClick={() => submitSearch(searchField, searchVal)}>
         <SearchIcon fontSize="large" />
       </IconButton>
+      {serched && (
+        <IconButton onClick={() => cancelSearch()}>
+          <CancelIcon fontSize="default" />
+        </IconButton>
+      )}
     </form>
   );
 };
