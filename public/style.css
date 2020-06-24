@@ -83,7 +83,7 @@
 }
 
 .mini-bar {
-  height: 80px;
+  min-height: 80px;
   width: 100%;
   background-color: #FFFFFF;
   z-index: 2;
@@ -93,6 +93,7 @@
   justify-content: space-between;
   padding-left: 15px;
   transform: translateY(-5px);
+  flex-wrap: wrap;
 }
 
 .page {
@@ -124,4 +125,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.menu-primary-enter {
+  transform: translateX(-110%);
+}
+.menu-primary-enter-active {
+  transform: translateX(0%);
+  transition: all 500ms ease;
+}
+.menu-primary-exit {
+  /* position: absolute; */
+}
+.menu-primary-exit-active {
+  transform: translateX(-110%);
+  transition: all 500ms ease;
+}
+
+
+.menu-secondary-enter {
+  transform: translateX(110%);
+}
+.menu-secondary-enter-active {
+  transform: translateX(0%);
+  transition: all 500ms ease;
+}
+.menu-secondary-exit {
+
+}
+.menu-secondary-exit-active {
+  transform: translateX(110%);
+  transition: all 500ms ease;
 }

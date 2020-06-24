@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const GOT_SHIPMENTS = 'GOT_SHIPMENTS'
-
+const UPDATED_SHIPMENT = "UPDATED_SHIPMENT"
 const gotShipments = ({shipments, totalShipments, totalPages, page}) => {
     return {
         type: GOT_SHIPMENTS,
@@ -26,7 +26,6 @@ export const getShipments = (page, view) => {
     if (view) {
       view = {...view.search, ...view.order, ...view.statusSearch}  
       query = `&${queryString.stringify(view)}`;
-      console.log(query)
     }
 
     const res = await axios.get(`/shipments?_page=${page}&_limit=20${query}`);
@@ -60,6 +59,18 @@ const allShipmentsReducer = (state = initialState, action) => {
         page: action.page, 
         totalPages: action.totalPages 
       };
+
+    case UPDATED_SHIPMENT: 
+      return {
+        ...state,
+        shipments: state.shipments.map(shipment => {
+          if (shipment.id === action.shipment.id) {
+            return action.shipment
+          } else {
+            return shipment
+          }
+        })
+      }
     default:
       return state;
   }

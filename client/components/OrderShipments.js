@@ -69,11 +69,11 @@ export const OrderShipments = (props) => {
       </FormControl>
       {orderDirection === "asc" ? (
         <IconButton onClick={() => changeorderDirection("desc")}>
-          <ArrowUpwardIcon fontSize="medium" />
+          <ArrowUpwardIcon fontSize="default" />
         </IconButton>
       ) : (
         <IconButton onClick={() => changeorderDirection("asc")}>
-          <ArrowDownwardIcon fontSize="medium" />
+          <ArrowDownwardIcon fontSize="default" />
         </IconButton>
       )}
       <Button className={classes.button} variant="contained" onClick={() => submitSearch(orderField, orderDirection)}>Order By</Button>
