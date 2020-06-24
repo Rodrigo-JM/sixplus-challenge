@@ -9,6 +9,7 @@ const initialState = {
 
 const GOT_SHIPMENTS = 'GOT_SHIPMENTS'
 const UPDATED_SHIPMENT = "UPDATED_SHIPMENT"
+
 const gotShipments = ({shipments, totalShipments, totalPages, page}) => {
     return {
         type: GOT_SHIPMENTS,
@@ -23,7 +24,7 @@ export const getShipments = (page, view) => {
   return async (dispatch) => {
     let query = "";
 
-    if (view) {
+    if (view) {//Just checking to see if the view (sharedQuery) object came along with the function call, if it did, we extract the properties and build a query string if them
       view = {...view.search, ...view.order, ...view.statusSearch}  
       query = `&${queryString.stringify(view)}`;
     }

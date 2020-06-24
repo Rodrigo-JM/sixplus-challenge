@@ -81,6 +81,7 @@ export const OrderShipments = (props) => {
           <MenuItem value={"userId"}>User Id</MenuItem>
         </Select>
       </FormControl>
+
       {orderDirection === "asc" ? (
         <IconButton onClick={() => changeorderDirection("desc")}>
           <ArrowUpwardIcon fontSize="default" />
@@ -90,6 +91,7 @@ export const OrderShipments = (props) => {
           <ArrowDownwardIcon fontSize="default" />
         </IconButton>
       )}
+      
       <Button
         className={classes.button}
         variant="contained"
@@ -97,6 +99,7 @@ export const OrderShipments = (props) => {
       >
         Order By
       </Button>
+
       {ordered && (
         <IconButton onClick={() => cancelSearch()}>
           <CancelIcon fontSize="default" />

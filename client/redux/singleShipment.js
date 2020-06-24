@@ -13,6 +13,12 @@ const gotShipment = (shipment) => {
     }
 }
 
+export const clearShipment = () => {
+    return {
+        type: CLEAR_SHIPMENT
+    }
+}
+
 const updatedShipment = (shipment) => {
     return {
         type: UPDATED_SHIPMENT,

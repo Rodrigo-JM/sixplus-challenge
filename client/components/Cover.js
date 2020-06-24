@@ -1,5 +1,6 @@
 import React from "react";
 
+//I always like to showcase a little bit of my artistic side on my projects by creating custom covers whenever it's fit
 export default function Cover() {
   return (
     <div className="cover">
@@ -13,6 +14,8 @@ export default function Cover() {
   );
 }
 
+//This is to generate the current date and display it on the cover
+//I thought it was a good idea since this is supposed to be a shipment company
 const dateNow = () => {
   let date = new Date();
   const options = { year: "numeric", month: "short", day: "numeric" };

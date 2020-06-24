@@ -84,9 +84,11 @@ export const SearchShipments = (props) => {
           <MenuItem value={"userId"}>User Id</MenuItem>
         </Select>
       </FormControl>
+
       <IconButton onClick={() => submitSearch(searchField, searchVal)}>
         <SearchIcon fontSize="large" />
       </IconButton>
+      
       {serched && (
         <IconButton onClick={() => cancelSearch()}>
           <CancelIcon fontSize="default" />

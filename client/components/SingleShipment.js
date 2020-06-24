@@ -36,6 +36,9 @@ class SingleShipment extends Component {
   componentDidMount() {
     this.props.getShipmentById(this.props.match.params.id);
 
+    //Transitions work by keeping track of variables/statements
+    //I am using this animation variable to spark the animations whenever it changes
+    //When the component is mounted, I give it just a brief moment before the animation variable is changed and the animation is triggered
     setTimeout(this.finishAnimation, 100);
   }
 
@@ -48,7 +51,9 @@ class SingleShipment extends Component {
           classNames="menu-primary"
           unmountOnExit
         >
-          <div></div>
+          <div>
+            {/* I am using this empty transition component so that we have something to transition from-to */}
+          </div>
         </CSSTransition>
 
         <CSSTransition
@@ -71,9 +76,7 @@ class SingleShipment extends Component {
                     <ShipmentServices data={this.props.shipment} />
                   </Grid>
                 </Grid>
-                <div className="footer">
-
-                </div>
+                <div className="footer"></div>
               </Paper>
             ) : (
               <h1>Loading...</h1>
@@ -96,7 +99,7 @@ const ShipmentInfo = (props) => {
       <Grid container direction="column">
         {infoArray.map((info) => {
           return (
-            <h3>
+            <h3 key={info}>
               {capitalize(info)}: {capitalize(props.data[info])}
             </h3>
           );
@@ -111,10 +114,10 @@ const ShipmentCargo = (props) => {
     <Grid item xs={12}>
       <h2>Cargo:</h2>
       <List>
-        {props.data.cargo.map((allot) => {
+        {props.data.cargo.map((allot, index) => {
           return (
-            <Fragment>
-              <ListItem divider="true">
+            <Fragment key={index}>
+              <ListItem divider={true}>
                 <Grid container direction="column">
                   <h4>Type: {capitalize(allot.type)}</h4>
                   <h4>Description: {capitalize(allot.description)}</h4>
@@ -134,10 +137,10 @@ const ShipmentServices = (props) => {
     <Grid item xs={12}>
       <h2>Services:</h2>
       <List>
-        {props.data.services.map((service) => {
+        {props.data.services.map((service, index) => {
           return (
-            <Fragment>
-              <ListItem divider="true">
+            <Fragment key={index}>
+              <ListItem divider={true}>
                 <Grid container direction="column">
                   <h4>Type: {capitalize(service.type)}</h4>
                   {service.value && <h4>Value: {service.value}</h4>}

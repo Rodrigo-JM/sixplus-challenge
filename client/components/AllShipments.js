@@ -6,6 +6,8 @@ import { Grid } from "@material-ui/core";
 
 import ShipmentCard from "./ShipmentCard";
 import { getShipments } from "../redux/allShipments";
+import {clearShipment} from '../redux/singleShipment'
+
 
 import { CSSTransition } from "react-transition-group";
 
@@ -16,6 +18,7 @@ class AllShipments extends Component {
     this.state = {
       animation: false
     }
+
     this.goToShipment = this.goToShipment.bind(this);
     this.finishAnimation = this.finishAnimation.bind(this)
   }
@@ -28,10 +31,17 @@ class AllShipments extends Component {
     //get first page shipments when mounting
     this.props.getShipments(1);
 
+    //making sure that no singleShipment is in state while in this page
+    this.props.clearShipment();
+    //Transitions work by keeping track of variables/statements
+    //I am using this 'animation' variable to spark the animations whenever it changes
+    //When the component is mounted, I give it just a brief moment before the animation variable is changed and the animation is triggered
     setTimeout(this.finishAnimation, 100);
   }
 
   goToShipment(id) {
+    //I like using the history prop from React Router to change views
+    //It is passed down from the Route component whenever it is actively rendering a component 
     this.props.history.push(`/${id}`);
   }
 
@@ -49,7 +59,7 @@ class AllShipments extends Component {
               <Grid container spacing={2}>
                 {this.props.shipments.map((shipment) => {
                   return (
-                    <Grid item md={4} sm={12}>
+                    <Grid key={shipment.id} item md={4} sm={12}>
                       <ShipmentCard
                         item
                         data={shipment}
@@ -70,7 +80,7 @@ class AllShipments extends Component {
           unmountOnExit
         >
           <div>
-
+          {/* I am using this empty transition component so that we have something to transition from-to */}
           </div>
         </CSSTransition>
       </div>
@@ -88,6 +98,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     getShipments: (page) => dispatch(getShipments(page)),
+    clearShipment: () => dispatch(clearShipment())
   };
 };
 

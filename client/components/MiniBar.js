@@ -9,6 +9,11 @@ import {IconButton} from '@material-ui/core'
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
+//I usually call minibar the component that sits on top of grids and holds navigation tools like pagination, filters, and ordering
+
+//This is my take on the minibar for the current project
+//I basically created a state that is going to be converted into a queryString (in the redux side) and appended to the GET request
+//I also created three components that are going to be responsible for changing this state and making requests
 export default function MiniBar(props) {
   const [sharedQuery, addToSharedQuery] = useState({
     search: {},
@@ -37,7 +42,8 @@ export default function MiniBar(props) {
             sharedQuery={sharedQuery}
             addToSharedQuery={addToSharedQuery}
           />
-          <Pagination />
+          {/* Although the pagination component doesn't change the shareQuery state, it needs to be aware of the query to change pages accordingly */}
+          <Pagination sharedQuery={sharedQuery}/>
         </div>
       </CSSTransition>
       <CSSTransition

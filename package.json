@@ -4,11 +4,12 @@
   "description": "Welcome to the SixPlus coding challenge! Please read the following instructions carefully.",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "server": "json-server db.json",
     "deploy": "script/deploy",
     "start-dev": "NODE_ENV='development' npm run build-watch & NODE_ENV='development' npm run server",
     "build-watch": "webpack -w",
-    "test": "NODE_ENV='test' mocha  ./tests --recursive --watch --require babel-polyfill --require babel-register",
+    "test": "NODE_ENV='test' mocha ./tests/thunks.js ./tests --recursive --watch --require @babel/polyfill --require @babel/register npm run server",
     "start": "npm run server"
   },
   "author": "Byldd Recruiting Team",
