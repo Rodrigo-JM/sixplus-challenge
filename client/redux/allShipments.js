@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import queryString from 'query-string'
 const initialState = {
   shipments: [],
   totalShipments: 0,
@@ -19,9 +19,17 @@ const gotShipments = ({shipments, totalShipments, totalPages, page}) => {
     }
 }
 
-export const getShipments = (page) => {
+export const getShipments = (page, view) => {
   return async (dispatch) => {
-    const res = await axios.get(`/shipments?_page=${page}&_limit=20`);
+    let query = "";
+
+    if (view) {
+      view = {...view.search, ...view.order, ...view.statusSearch}  
+      query = `&${queryString.stringify(view)}`;
+      console.log(query)
+    }
+
+    const res = await axios.get(`/shipments?_page=${page}&_limit=20${query}`);
 
     dispatch(
       gotShipments({

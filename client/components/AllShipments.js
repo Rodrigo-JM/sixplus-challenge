@@ -16,7 +16,6 @@ class AllShipments extends Component {
 
   componentDidMount() {
     //get first page shipments when mounting
-    //get total number of shipments and calculates number of pages
     this.props.getShipments(1);
   }
 
@@ -28,7 +27,6 @@ class AllShipments extends Component {
     return (
       <div>
         <Bouncer>
-          <h1>{this.props.totalShipments}</h1>
           <Grid container spacing={2}>
             {this.props.shipments.map((shipment) => {
               return (

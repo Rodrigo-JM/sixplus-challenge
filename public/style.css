@@ -90,6 +90,7 @@
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding-left: 15px;
   transform: translateY(-5px);
 }
@@ -102,6 +103,25 @@
 .pagination {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  align-items: center;
+}
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 360px;
+}
+
+.order-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 260px;
+}
+
+.status-legend {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }

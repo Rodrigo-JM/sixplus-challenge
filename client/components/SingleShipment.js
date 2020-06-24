@@ -1,27 +1,22 @@
+import { connect } from 'react-redux'
 import React, { Component } from "react";
-import { getShipmentById } from "../../utils/functions/requests";
+import { getShipmentById } from "../redux/singleShipment";
 
 import { Grid } from "@material-ui/core";
 
-export default class SingleShipment extends Component {
-  constructor() {
-    super();
+class SingleShipment extends Component {
 
-  }
-
-  async componentDidMount() {
-    const { data } = await getShipmentById(this.props.match.params.id);
-
-    this.setState({ shipment: data });
+  componentDidMount() {
+    this.props.getShipmentById(this.props.match.params.id);
   }
 
   render() {
-    return this.state.shipment.id ? (
+    return this.props.shipment.id ? (
       <Grid container justify="space-around">
-        <ShipmentInfo data={this.state.shipment} />
+        <ShipmentInfo data={this.props.shipment} />
         <Grid item container md={5} sm={12}>
-          <ShipmentCargo data={this.state.shipment} />
-          <ShipmentServices data={this.state.shipment} />
+          <ShipmentCargo data={this.props.shipment} />
+          <ShipmentServices data={this.props.shipment} />
         </Grid>
       </Grid>
     ) : (
@@ -83,3 +78,17 @@ const ShipmentServices = (props) => {
     </Grid>
   );
 };
+
+
+
+const mapStateToProps = (state) => ({
+    shipment: state.singleShipment
+})
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getShipmentById: (id) => dispatch(getShipmentById(id))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleShipment)
